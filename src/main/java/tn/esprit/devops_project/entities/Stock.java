@@ -22,3 +22,4 @@ public class Stock implements Serializable {
     Set<Product> products;
 }
 /* This is the second test for git changes*/
+/* This is the test to create branch with my name n the git repo */

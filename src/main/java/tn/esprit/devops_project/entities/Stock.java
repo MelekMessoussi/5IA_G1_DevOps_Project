@@ -21,3 +21,4 @@ public class Stock implements Serializable {
     @OneToMany(mappedBy = "stock")
     Set<Product> products;
 }
+/* This is the second test for git changes*/

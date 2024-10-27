@@ -13,7 +13,7 @@ import tn.esprit.devops_project.repositories.SupplierRepository;
 
 import java.util.Optional;
 
-public class SupplierServiceImplTest {
+class SupplierServiceImplTest {
 
     @Mock
     private SupplierRepository supplierRepository;
@@ -24,7 +24,7 @@ public class SupplierServiceImplTest {
     private Supplier supplier;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         supplier = new Supplier();
         supplier.setIdSupplier(1L); // Set ID
@@ -33,7 +33,7 @@ public class SupplierServiceImplTest {
     }
 
     @Test
-    public void testAddSupplier() {
+    void testAddSupplier() {
 
         when(supplierRepository.save(any(Supplier.class))).thenReturn(supplier);
 
@@ -48,7 +48,7 @@ public class SupplierServiceImplTest {
     }
 
     @Test
-    public void testRetrieveSupplier() {
+    void testRetrieveSupplier() {
 
         when(supplierRepository.findById(1L)).thenReturn(Optional.of(supplier));
 
@@ -62,7 +62,7 @@ public class SupplierServiceImplTest {
     }
 
     @Test
-    public void testRetrieveSupplierNotFound() {
+    void testRetrieveSupplierNotFound() {
 
         when(supplierRepository.findById(1L)).thenReturn(Optional.empty());
 

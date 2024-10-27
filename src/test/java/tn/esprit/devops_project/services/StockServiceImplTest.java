@@ -11,7 +11,7 @@ import org.mockito.MockitoAnnotations;
 import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.StockRepository;
 
-public class StockServiceImplTest {
+class StockServiceImplTest {
 
     @Mock
     private StockRepository stockRepository;
@@ -22,7 +22,7 @@ public class StockServiceImplTest {
     private Stock stock;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         stock = new Stock();
         stock.setIdStock(1L);
@@ -30,7 +30,7 @@ public class StockServiceImplTest {
     }
 
     @Test
-    public void testAddStock() {
+    void testAddStock() {
         // Arrange: Define behavior for the mocked repository
         when(stockRepository.save(any(Stock.class))).thenReturn(stock);
 
@@ -43,3 +43,4 @@ public class StockServiceImplTest {
         verify(stockRepository, times(1)).save(stock);
     }
 }
+

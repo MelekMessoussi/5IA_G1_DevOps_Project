@@ -43,3 +43,4 @@ class StockServiceImplTest {
         verify(stockRepository, times(1)).save(stock);
     }
 }
+

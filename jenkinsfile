@@ -10,14 +10,14 @@ pipeline {
     }
 
     stages {
-        stage('Checkout GIT') {
+        stage('GIT') {
             steps {
                 echo "Pulling..."
                 git branch: 'yasmineatrous_5IA_G1', url: 'https://github.com/MelekMessoussi/5IA_G1_DevOps_Project.git'
             }
         }
 
-        stage('Maven Clean and Compile') {
+        stage('Maven') {
             steps {
                 echo "Nettoyage et compilation du projet..."
                 sh 'mvn clean compile'
@@ -32,7 +32,7 @@ pipeline {
             }
         }
         
-        stage('JUnit') {
+        stage('Mockito') {
             steps {
                 echo "Running JUnit tests..."
                 sh 'mvn test'
@@ -112,7 +112,7 @@ pipeline {
                          from: "${EMAIL_CREDENTIALS_USR}", 
                          replyTo: "${EMAIL_CREDENTIALS_USR}", 
                          subject: "Jenkins Job ${buildStatus}: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}", 
-                         to: 'messoussi.melek@gmail.com', 
+                         to: 'yassatrous1522@gmail.com', 
                          smtpAuthUser: "${EMAIL_CREDENTIALS_USR}", 
                          smtpAuthPassword: "${EMAIL_CREDENTIALS_PSW}"
                 }

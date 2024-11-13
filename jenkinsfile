@@ -6,7 +6,7 @@ pipeline {
         DOCKER_HUB_USER = 'yassatrous'
         DOCKER_HUB_PASSWORD = credentials('docker_hub_password') 
         NEXUS_CREDENTIALS = credentials('nexus_credentials') 
-        EMAIL_CREDENTIALS = credentials('gmailcred')
+        EMAIL_CREDENTIALS = credentials('gmailcredn')
     }
 
     stages {

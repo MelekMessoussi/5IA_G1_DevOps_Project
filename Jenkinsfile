@@ -120,21 +120,20 @@ pipeline {
         }
 
        
-     
-        
-    }
-
-
-      post {
-        success {
-            mail to: 'messoussi.melek@gmail.com',
-                 subject: "Pipeline Success: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
-                 body: "Good news! The pipeline ${env.JOB_NAME} completed successfully.\n\nCheck the results at ${env.BUILD_URL}."
-        }
-        failure {
-            mail to: 'you@example.com',
-                 subject: "Pipeline Failed: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
-                 body: "Unfortunately, the pipeline ${env.JOB_NAME} has failed.\n\nCheck the details at ${env.BUILD_URL}."
+  stage('Email Notification') {
+            steps {
+                script {
+                    if (currentBuild.currentResult == 'SUCCESS') {
+                        mail to: 'messoussi.melek@gmail.com',
+                             subject: "Pipeline Success: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
+                             body: "Good news! The pipeline ${env.JOB_NAME} completed successfully.\n\nCheck the results at ${env.BUILD_URL}."
+                    } else {
+                        mail to: 'messoussi.melek@gmail.com',
+                             subject: "Pipeline Failed: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
+                             body: "Unfortunately, the pipeline ${env.JOB_NAME} has failed.\n\nCheck the details at ${env.BUILD_URL}."
+                    }
+                }
+            }
         }
     }
 }

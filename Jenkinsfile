@@ -6,6 +6,7 @@ pipeline {
         DOCKER_HUB_USER = 'melekmessoussi'
         DOCKER_HUB_PASSWORD = credentials('docker_hub_password')
         NEXUS_CREDENTIALS = credentials('Nexus-credentials')
+        EMAIL_CREDENTIALS = credentials('gmailcred')
         
     }
     stages {
@@ -131,7 +132,7 @@ pipeline {
                          from: "${EMAIL_CREDENTIALS_USR}", 
                          replyTo: "${EMAIL_CREDENTIALS_USR}", 
                          subject: "Jenkins Job ${buildStatus}: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}", 
-                         to: 'you@example.com', 
+                         to: 'messoussi.melek@gmail.com', 
                          smtpAuthUser: "${EMAIL_CREDENTIALS_USR}", 
                          smtpAuthPassword: "${EMAIL_CREDENTIALS_PSW}"
                 }

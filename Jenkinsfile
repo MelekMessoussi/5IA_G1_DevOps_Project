@@ -97,30 +97,6 @@ pipeline {
             }
         
         }
-        
-        
-        
-
-
-
-          stage('Email Notification') {
-            steps {
-                script {
-                    def buildStatus = currentBuild.currentResult == 'SUCCESS' ? 'Success' : 'Failure'
-                    
-                    mail bcc: '', 
-                         body: "Build ${buildStatus}: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}\n\nPlease check the details at ${env.BUILD_URL}.", 
-                         cc: '', 
-                         from: "${EMAIL_CREDENTIALS_USR}", 
-                         replyTo: "${EMAIL_CREDENTIALS_USR}", 
-                         subject: "Jenkins Job ${buildStatus}: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}", 
-                         to: 'messoussi.melek@gmail.com', 
-                         smtpAuthUser: "${EMAIL_CREDENTIALS_USR}", 
-                         smtpAuthPassword: "${EMAIL_CREDENTIALS_PSW}"
-                }
-            }
-        }
-
                stage('Grafana') {
             steps {
                 script {
@@ -135,8 +111,24 @@ pipeline {
                     
                     sh "curl -X POST -d 'job_duration=${jobDuration}' http://192.168.33.10:9090/metrics"
                     
+                }
+            }
+        }
 
+                stage('Email Notification') {
+            steps {
+                script {
+                    def buildStatus = currentBuild.currentResult == 'SUCCESS' ? 'Success' : 'Failure'
                     
+                    mail bcc: '', 
+                         body: "Build ${buildStatus}: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}\n\nPlease check the details at ${env.BUILD_URL}.", 
+                         cc: '', 
+                         from: "${EMAIL_CREDENTIALS_USR}", 
+                         replyTo: "${EMAIL_CREDENTIALS_USR}", 
+                         subject: "Jenkins Job ${buildStatus}: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}", 
+                         to: 'messoussi.melek@gmail.com', 
+                         smtpAuthUser: "${EMAIL_CREDENTIALS_USR}", 
+                         smtpAuthPassword: "${EMAIL_CREDENTIALS_PSW}"
                 }
             }
         }
